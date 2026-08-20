@@ -1,0 +1,299 @@
+#--use RUFF(after coding,ctrl+s) for proper formatting
+**steps for a project
+1.uv init name 
+2.uv add ipykernel
+--UV (better than pip)
+--create virtual environments at the start of every project(to have different environments for diff projects)
+1.ctrl+shift+p
+2.python create environment
+3.venv
+--interactive python
+*****ipykernel--can run selected code (shift+enter)
+--comments(to explain why not what)
+--datatypes-int,float,str,bool,list,dict,set,tuple
+--precedence
+(),**,[*,/,%,//],+,-
+if expression has same precedence operators then we go from left to right
+--len(variable_name)--to check length
+--strings
+**fstrings
+name='shaik'
+eg: print(f'my name is {name}')
+output:my name is shaik
+**methods   (original string is not changed cause strings are immutable)
+variable.method_name()
+1.lower()--to lower case
+2.upper()--to uppercase
+3.title()--to capitalise first letter of all words in a string
+4. in , not in
+5.startswith(' ')
+6.endswith(' ')
+7.find(' ') --returns index of first apperence
+8.count(' ')--returns count
+9.replace('old','new')
+10.strip() ----it removes first(leading) and last(Trailing) spaces of string
+11.capitalize() --to capitalize first letter of only first word in a string
+12.reverse a string- variable[::-1]
+--indexing
+[],[start:stop],[start:stop:step]  eg:[0:-1]  
+--Data Structures
+1.lists
+[],ordered(indexed),same/different datatypes
+update value-> list_name[index]=new value  
+access value-> list_name[index]
+to add value-> list_name.append('value')
+to add at index-> list_name.insert(index,'value')
+to remove value=list_name.remove('value')
+to remove last item-> list_name.pop()
+to remove at index-> list_name.pop(index)
+to remove all occurences-list_name.remove(value)
+2.dictionary
+{}, key-value pairs,same/different dayatypes,no duplicates are allowed
+to access values -> dic_name['key name']
+to update value -> di_name.update({key:value,key:value})
+to add new key-value -> dic_name[' new key'] = 'value'
+to remove any key -> del dic_name['key']
+to get kesy-> dic_name.keys()
+to get values -> dic_name.values()
+to get both -> dic_name.items()
+--if we want to acces a key which is not present in dictionary we use:
+  mydict.get('key name',default value to return)
+--if we have duplicates in dict 
+   last assigned value will be the final value not the previous one 
+   eg:
+     model_config = {'epoch': 10, 'epoch': 20}
+     print(model_config['epoch'])  
+     output---20
+--nested lists,nested dictionaries,list in dictionary and dictuonary inside lists are possible
+for i in list/dict name:
+  i ->index --for lists
+  i-> key name --for dictionary
+  listname[index][index] --list in list
+  listname[index][keyname] --dict in list
+  dictname[main key][key]  ---dict in dict
+  dictname[main key][index] --list in dictionary
+3.tuples
+(),same/different datatypes,indexed
+to access -> tuple_name[index]
+updating here is not possible
+4.Sets 
+{},unindexed,duplicates are not possible
+to add values -> set_name.add('value')
+to remove:
+1.with error-> set_name.remove('value')
+2.without error -> set_name.discard('value')
+--functions
+def functioname(): ---defining
+  //statements
+functioname()  ---calling/invocation  
+keyword arguements:
+functioname(varname='value')
+--use of return
+1.def add(a,b): --if we have print instead of return,result cannot be modified
+   return a+b  --for returning one value
+result=add(5,6)
+result+=2  
+
+2. def add(a,b):  --for returning more than 1 value
+      c=a+b
+      d=a-b
+      return c,d
+result1,result2=add(5,6)      
+
+--function calling can be used in
+1.expressions : eg: multiply(5)+multiply(10)
+2.if else : if(multiply(5)>20)
+**--modules and packages
+1.module-single python file
+2.package-folder containing multiple files
+------------
+built in :
+import module_name
+use ---- eg:math.sqrt()
+1.math
+2.random
+3.datetime
+4.os
+5.json etc.
+----------------
+-installing packages
+pip install --
+requests,pandas,numpy,ipykernel,matplotlib etc..
+-for specific version:
+pip install packagename==version
+-from requiremnts.txt file:
+pip install -r requirements.txt
+-for uninstalling
+pip uninstall name
+--error handling
+try:
+ \\code
+except errorname:   or except Exception as e:
+ \\code  or print(e)
+ ------------------
+ 1.break--to exit from the loops
+ 2.True in While--to contine until break is given
+ 3.continue-to skip the part
+ --file handling
+ --to get raw representation-repr()
+ steps:
+ 1.open a file
+ 2.work with it
+ 3.close the file
+ -everytime we call open function existing data is deleted
+ --creating a file
+ open("file_name","w")
+--reading a file
+var=open('file_name','r')
+var1=var.read()
+var.close() 
+--writing into  a file 
+var=open('filename','w')
+var.write("text\n") -accepts only 1 arguement and that should be  string
+var.close()
+--adding new data without deleting existing one
+-only strings can be added not(list/dict etc)
+var=open('file_name','a') 
+--without var.close()
+ with open('filename','r'/'w'/'a') as f:
+    f.read()/f.write()/f.readlines()
+--**DIFF BETWEEN READ() AND READLINES()
+ read()---gives entire data from a file as one single string 
+ readlines()--gives each line separated by comma in the form of a list
+
+ --working with json
+ 1.writing:
+ in json boolean values are lowercase and for strings use only " " and for no value we use null
+ every {} should have same keys
+ {
+  data--(key-value pairs)
+ }
+ eg:
+ { 'key':[
+  {"name":"matcha",
+  "price":12.99,
+  "instock":true},{}
+ ]}
+ 2.reading
+ import json
+ //reading a json file--with open('name','r) as f:
+ //loading data       --   var=json.load(f)
+ //print              --print(var)
+ 
+ 3.for proper printing of json
+ from pprint import pprint 
+  pprint(var,width=40)
+
+ 4.for proper json formatting in real json file 
+import json 
+with open(".venv/python_for_ai/new.json",'r') as f: 
+    contents=json.load(f )
+ with open(".venv/python_for_ai/new.json",'w') as file:   
+    json.dump(contents,file,indent=2) 
+--working with envirnoment variables(this hides api or other security keys when commited to github and also hides .env file)
+-pip install python-dotenv
+1.createing  a .env file 
+2.copy paste variables from python code to .env file 
+3.delete from python code
+4.in python code 
+import os 
+from  dotenv import find_dotenv,load_dotenv 
+dotenv_path=find_dotenv()
+load_dotenv(dotenv_path)
+API_KEY=os.getenv("api_key variable name(from .env file)")
+5.in .gitignore file 
+ write   .env 
+--------classes and objects  --(CAN BE DONE USING PYDANTIC(pip install pydantic))
+#---classes -(when we have similar things ,but each thing has different values)
+class Customer:          #defining a class
+    def __init__(self,name,acc_no,balance,amount):             #constructor(runs automatically when an aobject is created)
+        self.name=name
+        self.acc_no=acc_no 
+        self.balance=balance 
+        self.amount=amount
+    def deposit_money(self):                         #|
+        self.balance+=self.amount                    #|
+        print(self.balance)                          #|  methods 
+    def withdraw_money(self) :                       #|
+        self.balance-=self.amount                    #|
+    def check_balance(self):                         #|
+        print(f'balance : {self.balance}')           #|
+customer=[Customer('sia',456,167890,0),         #objects/instance in list
+          Customer('john',123,89000,5000)]
+print(customer[0].name)                 #accessing
+customer[1].deposit_money()              #calling a method   
+---calling llm 
+from google import genai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+api_key = os.getenv("my_api_key")
+client = genai.Client(api_key=api_key)
+
+interaction = client.interactions.create(
+    model="gemini-3.6-flash", 
+    input="create me a receipe book of 5 chicken dishes ,each recipe should involve ingrediants,method in step by step and the whole recipe book should be in exact 5 pages,each receipe in 1 page" 
+)
+
+print(interaction.output_text)
+
+----chatbot with memory 
+from google import genai
+from dotenv import load_dotenv 
+import os
+conversation=[]
+load_dotenv() 
+api_key=os.getenv("my_api_key")
+previous_id=None
+client = genai.Client(api_key=api_key)
+def chat(user_msg):
+    global previous_id
+    conversation.append({"role":"user","parts":[{"text":user_msg}]})
+    if previous_id is None:
+          interaction = client.interactions.create(
+          model="gemini-3.6-flash",
+          input=user_msg
+)
+    else:
+          interaction = client.interactions.create(
+          model="gemini-3.6-flash",
+          input=user_msg,
+          previous_interaction_id=previous_id
+         )
+    previous_id=interaction.id
+          
+    reply=(interaction.output_text)
+
+    conversation.append({"role":"model","parts":[{'text':reply}]})         
+    return reply 
+chat('ingrediants used in cookies')
+chat('what did i ask you to do previously')   
+
+--API calling using requests 
+import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+api_key = os.getenv("my_api_key")
+
+url = f"https://api.openweathermap.org/data/4.0/onecall/current?lat=52.2297&lon=21.0122&units=metric&lang=en&appid={api_key}"
+
+try:
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print("Error:", response.status_code)
+        print(response.text)
+
+except Exception as e:
+    print(e)
+
+
+
+
+
